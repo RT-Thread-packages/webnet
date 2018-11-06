@@ -35,7 +35,7 @@ WebNet 软件包功能特点如下：
 
 ### 1.2 许可证
 
-WebNet 软件包遵循 GPL2+ 商业双许可。该软件包可以根据 GUN 标准使用通用公共许可证，详见 LICENSE 文件。如果用于商业应用，可以通过电子邮箱 <business@rt-thread.com > 与我们联系获取商业许可。
+WebNet 软件包遵循 GPL2+ 商业双许可。该软件包可以根据 GNU 标准使用通用公共许可证，详见 LICENSE 文件。如果用于商业应用，可以通过电子邮箱 <business@rt-thread.com > 与我们联系获取商业许可。
 
 ### 1.3 依赖
 
