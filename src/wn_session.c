@@ -32,6 +32,8 @@
 
 static struct webnet_session *_session_list = 0;
 
+static void (*webnet_err_callback)(struct webnet_session *session);
+
 /**
  * create a webnet session
  *
@@ -493,6 +495,11 @@ int webnet_sessions_set_fds(fd_set *readset, fd_set *writeset)
     return maxfdp1;
 }
 
+void webnet_sessions_set_err_callback(void (*callback)(struct webnet_session *session))
+{
+    webnet_err_callback = callback;
+}
+
 /**
  * handle the file descriptors request
  *
@@ -556,9 +563,16 @@ void webnet_sessions_handle_fds(fd_set *readset, fd_set *writeset)
                 /* check result code */
                 if (session->request->result_code != 200)
                 {
-                    _webnet_session_badrequest(session, session->request->result_code);
+                    /* do request err callback */
+                    if (webnet_err_callback != RT_NULL)
+                    {
+                        webnet_err_callback(session);
+                    }
+                    else
+                    {
+                        _webnet_session_badrequest(session, session->request->result_code);
+                    }
                 }
-				
                 /* close this session */
                 webnet_session_close(session);
             }

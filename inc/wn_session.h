@@ -100,6 +100,8 @@ void webnet_session_set_header_status_line(struct webnet_session *session, int c
 int webnet_sessions_set_fds(fd_set *readset, fd_set *writeset);
 void webnet_sessions_handle_fds(fd_set *readset, fd_set *writeset);
 
+void webnet_sessions_set_err_callback(void (*callback)(struct webnet_session *session));
+
 #ifdef  __cplusplus
     }
 #endif
