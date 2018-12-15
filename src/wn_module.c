@@ -364,7 +364,7 @@ int webnet_module_system_dofile(struct webnet_session *session)
 	}
 #else
 	webnet_session_printf(session,
-						"Connection: %s\r\n",
+                        "Connection: %s\r\n",
                         "close");
 #endif
 
