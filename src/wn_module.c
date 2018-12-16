@@ -349,6 +349,25 @@ int webnet_module_system_dofile(struct webnet_session *session)
                           "Content-Length: %ld\r\n",
                           file_length);
 
+#ifdef WEBNET_USING_KEEPALIVE
+	if(session->request->connection == WEBNET_CONN_KEEPALIVE)
+	{
+		webnet_session_printf(session,
+                          "Connection: %s\r\n",
+                          "Keep-Alive");
+	}
+	else
+	{
+		webnet_session_printf(session,
+                          "Connection: %s\r\n",
+                          "close");
+	}
+#else
+	webnet_session_printf(session,
+                        "Connection: %s\r\n",
+                        "close");
+#endif
+
 #ifdef WEBNET_USING_GZIP
     if (request->support_gzip)
     {
