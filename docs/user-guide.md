@@ -4,11 +4,11 @@
 
 ## 准备工作
 
-### ENV 配置说明
+### Env 配置说明
 
-首先需要下载 WebNet 软件包，并将软件包加入到项目中。在 BSP 目录下使用 menuconfig 命令打开 ENV 配置界面，在 `RT-Thread online packages → IoT - internet of things` 中选择 WebNet软件包，具体路径如下：
+首先需要下载 WebNet 软件包，并将软件包加入到项目中。在 BSP 目录下使用 menuconfig 命令打开 Env 配置界面，在 `RT-Thread online packages → IoT - internet of things` 中选择 WebNet软件包，具体路径如下：
 
-```shell
+```c
 RT-Thread online packages
     IoT - internet of things  --->
     	[*] WebNet: A HTTP Server for RT-Thread
@@ -145,7 +145,7 @@ struct webnet_session
 };
 ```
 
-   `webnet_session` 结构体用于存放当前建立的连接会话的部分信息，可用与当前会话连接的整个流程。在进行 HTTP 数据交互之前，需要先创建并初始化该结构体，**新会话的创建已经在 webnet 线程中完成**，如下所示：
+`webnet_session` 结构体用于存放当前建立的连接会话的部分信息，可用与当前会话连接的整个流程。在进行 HTTP 数据交互之前，需要先创建并初始化该结构体，**新会话的创建已经在 webnet 线程中完成**，如下所示：
 
 ```c
 struct webnet_session* accept_session;
@@ -157,6 +157,7 @@ if (accept_session == RT_NULL)
 ```
 
 3. **接收 HTTP 请求数据，解析请求信息**
+
     创建会话结构体成功之后，当连接会话接收到 HTTP 请求后，会对接收的 HTTP 请求进行处理，顺序地解析请求的类型、头部信息及附加参数。大致解析请求信息的流程如下所示：
 
 ```c
@@ -394,6 +395,7 @@ WebNet 服务器初始化成功之后，直接在浏览器中输入设置 IP 地
 - **ALIAS 别名访问功能 **
 
 ALIAS 别名访问功能可以给文件夹设置别名访问。需要在 WebNet 服务器初始化之前设置该文件夹的别名，如下代码所示，调用 `webnet_alias_set` 函数设置 /test 目录的别名为 /admin，浏览器访问 /test 时会跳转访问到 /admin 目录：
+
 ```c
 void webnet_test(void)
 {
@@ -509,13 +511,18 @@ WebNet 服务器预压缩功能，需要在服务器端提前压缩页面资源�
 
 ## 常见问题
 
-**1. 浏览器访问设备 IP 地址不显示页面信息**
+### Q: 浏览器访问设备 IP 地址不显示页面信息。
 
-- 原因：设置的根目录地址错误；
+**A:**
+
+- 原因：设置的根目录地址错误。
 
 - 解决方法：确定设置的根目录地址和设备文件系统上创建的目录地址一致，确定根目录下有页面文件。
 
-**2. 设备出现 `out of pbuf` 错误情况**
+### Q: 设备出现 `out of pbuf` 错误情况。
 
-- 原因：设备内存不足；
+**A:**
+
+- 原因：设备内存不足。
+
 - 解决方式： WebNet 软件包上传文件等功能需要额外占用资源空间，建议在资源空间充足的设备上运行，或者在 qemu 上使用。

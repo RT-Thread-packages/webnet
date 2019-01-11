@@ -46,7 +46,7 @@ WebNet 软件包遵循 GPL2+ 商业双许可。该软件包可以根据 GNU 标�
 
 使用 WebNet软件包需要在 RT-Thread 的包管理中选中它，具体路径如下： 
 
-```shell
+```c
 RT-Thread online packages
     IoT - internet of things  --->
     	[*] WebNet: A HTTP Server for RT-Thread
@@ -95,7 +95,7 @@ RT-Thread online packages
 ## 4、注意事项
 
 - WebNet 软件包使用需要文件系统支持，需要确保运行设备上能使用文件系统。
-- WebNet 软件包默认未开启任何模块功能支持，使用的需要根据[软件包介绍](docs/introduction.md)在 ENV 中开启需要的功能。
+- WebNet 软件包默认未开启任何模块功能支持，使用的需要根据[软件包介绍](docs/introduction.md)在 Env 中开启需要的功能。
 
 ## 5、联系方式 & 感谢
 
