@@ -83,7 +83,7 @@ WebNet 软件包可以实现**在浏览器访问设备端保存的页面，并�
 
 下面以浏览器访问 WebNet 服务器根目录下主页面为例，介绍 WebNet 基本工作流程：
 
-1. **初始化 WebNet 软件包**
+* **初始化 WebNet 软件包**
 
 ```c
 int webnet_init(void);
@@ -122,9 +122,9 @@ static void webnet_thread(void *parameter)
 }
 ```
 
-2. **接收连接请求，创建连接会话**
+* **接收连接请求，创建连接会话**
 
-   WebNet 初始化线程创建成功之后，当有新的连接请求产生时，会创建一个连接会话结构体，结构体定义如下：
+WebNet 初始化线程创建成功之后，当有新的连接请求产生时，会创建一个连接会话结构体，结构体定义如下：
 
 ```c
 struct webnet_session
@@ -156,9 +156,9 @@ if (accept_session == RT_NULL)
 }
 ```
 
-3. **接收 HTTP 请求数据，解析请求信息**
+* **接收 HTTP 请求数据，解析请求信息**
 
-    创建会话结构体成功之后，当连接会话接收到 HTTP 请求后，会对接收的 HTTP 请求进行处理，顺序地解析请求的类型、头部信息及附加参数。大致解析请求信息的流程如下所示：
+创建会话结构体成功之后，当连接会话接收到 HTTP 请求后，会对接收的 HTTP 请求进行处理，顺序地解析请求的类型、头部信息及附加参数。大致解析请求信息的流程如下所示：
 
 ```c
 /* 该函数用于解析当前会话连接的请求模式、头部信息和参数 */
@@ -190,7 +190,7 @@ static void _webnet_session_handle_read(struct webnet_session* session)
 }
 ```
 
-4. **判断请求的功能模块，执行对应的功能**
+* **判断请求的功能模块，执行对应的功能**
 
 通过对请求模式和头部信息的解析，得到当前连接会话请求的基本信息，然后继续判断使用的功能模块的类型，并且执行对应的模块，判断的大致流程如下：
 
@@ -224,7 +224,7 @@ static int _webnet_module_system_uri_physical(struct webnet_session* session, in
 }
 ```
 
-5. **返回 HTTP 响应数据**
+* **返回 HTTP 响应数据**
 
 判断功能模块类型成功，并且正确执对应功能之后，WebNet 服务器会对当前会话连接的请求给予响应，如 CGI 功能执行之后，在 CGI 执行函数中可以使用 `webnet_session_printf` 或 `webnet_session_write` 函数发送响应数据到客户端。
 
@@ -243,7 +243,7 @@ static void cgi_hello_handler(struct webnet_session* session)
 }
 ```
 
-6. **关闭连接会话**
+* **关闭连接会话**
 
 当前会话连接请求解析成功、功能模块执行完成、响应数据发送完成之后，会关闭当前连接会话，释放会话结构体，完成整个 HTTP 数据数据交互过程，实现在浏览器上访问设备端提供的网页文件，或者完成上传、下载服务器上文件的操作。
 
@@ -483,7 +483,7 @@ void webnet_test(void)
 
 对应页面上传文件的代码如下：
 
- ```c
+```c
 <html>
   <body>
     <h3>Upload File Test</h3>
@@ -498,7 +498,7 @@ void webnet_test(void)
     <br/><br/>
   </body>
 </html>
- ```
+```
 
 - **预压缩功能**
 
