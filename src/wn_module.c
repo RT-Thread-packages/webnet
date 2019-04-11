@@ -146,6 +146,7 @@ static const struct webnet_session_ops _dofile_ops =
 int webnet_module_system_dofile(struct webnet_session *session)
 {
     int fd = -1;    /* file descriptor */
+    struct stat file_stat;
     const char *mimetype;
     rt_size_t file_length;
     struct webnet_request *request;
@@ -242,7 +243,7 @@ int webnet_module_system_dofile(struct webnet_session *session)
 
     /* .gz not exist, use raw. */
 #endif /* WEBNET_USING_GZIP */
-    if (fd < 0)
+    if (fd < 0 && stat(request->path, &file_stat) >= 0 && !S_ISDIR(file_stat.st_mode))
     {
         fd = open(request->path, O_RDONLY, 0);
     }
@@ -536,17 +537,16 @@ int webnet_module_handle_uri(struct webnet_session *session)
     index = 0;
     while (default_files[index] != RT_NULL)
     {
+        struct stat file_stat;
+        
         /* made a full path */
         rt_snprintf(full_path, WEBNET_PATH_MAX, "%s/%s%s",
                     webnet_get_root(), request->path, default_files[index]);
         /* normalize path */
         str_normalize_path(full_path);
 
-        fd = open(full_path, O_RDONLY, 0);
-        if (fd >= 0)
+        if (stat(full_path, &file_stat) >= 0 && !S_ISDIR(file_stat.st_mode))
         {
-            /* close file descriptor */
-            close(fd);
             break;
         }
 
