@@ -43,6 +43,7 @@ int webnet_module_dirindex(struct webnet_session* session, int event)
     if (event == WEBNET_EVENT_URI_POST)
     {
         DIR *dir;
+        struct stat file_stat;
         struct webnet_request *request;
         static const char* header = "<html><head><title>Index of %s</title></head><body bgcolor=\"white\"><h1>Index of %s</h1><hr><pre>";
         static const char* foot = "</pre><hr>WebNet/%s (RT-Thread)</body></html>";
@@ -51,6 +52,11 @@ int webnet_module_dirindex(struct webnet_session* session, int event)
         request = session->request;
         RT_ASSERT(request != RT_NULL);
 
+        if (stat(request->path, &file_stat) < 0 || !S_ISDIR(file_stat.st_mode))
+        {
+            return WEBNET_MODULE_CONTINUE;
+        }
+        
         dir = opendir(request->path);
         if (dir != RT_NULL)
         {
