@@ -34,6 +34,10 @@
 #include <lwip/select.h>
 #endif
 
+#if defined(RT_USING_LWIP) && (RT_LWIP_TCPTHREAD_STACKSIZE < 1408)
+#error The lwIP tcpip thread stack size(RT_LWIP_TCPTHREAD_STACKSIZE) must more than 1408
+#endif
+
 #define DBG_ENABLE
 #define DBG_COLOR
 #define DBG_SECTION_NAME    "wn"
