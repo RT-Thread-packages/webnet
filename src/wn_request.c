@@ -318,6 +318,9 @@ int webnet_request_parse_header(struct webnet_request *request, char* buffer, in
                     session->session_phase = WEB_PHASE_QUERY;
 
                     /* allocate query buffer */
+                    if(request->query != RT_NULL) {
+                       wn_free(request->query);
+                    }
                     request->query = (char*) wn_malloc(request->content_length + 1);
                     rt_memset(request->query, 0, request->content_length + 1);
                     request->query_offset = 0;
