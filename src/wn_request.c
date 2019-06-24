@@ -59,7 +59,7 @@ static void _webnet_request_parse_query(struct webnet_request* request)
 
     /* get the query counter */
     ptr = request->query;
-    end_ptr = request->query + request->content_length;
+    end_ptr = request->query + rt_strlen(request->query);
 
     request->query_counter = 1;
     while (*ptr && ptr <= end_ptr)
