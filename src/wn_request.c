@@ -939,6 +939,9 @@ void webnet_request_destory(struct webnet_request* request)
             if (request->callback) wn_free(request->callback);
             if (request->soap_action) wn_free(request->soap_action);
             if (request->sid) wn_free(request->sid);
+#if (WEBNET_CACHE_LEVEL > 1)
+            if(request->modified) wn_free(request->modified);
+#endif/* WEBNET_USING_CACHE */
 #ifdef WEBNET_USING_RANGE
             if (request->Range) wn_free(request->Range);
 #endif /* WEBNET_USING_RANGE */
