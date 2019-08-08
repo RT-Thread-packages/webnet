@@ -153,6 +153,8 @@ int webnet_module_system_dofile(struct webnet_session *session)
 
 #if WEBNET_CACHE_LEVEL > 0
     char ctime_str[32];
+    char gmtime_str[32];
+    struct tm* info;
     int stat_result = -1;
 #endif /* WEBNET_CACHE_LEVEL */
 
@@ -204,13 +206,18 @@ int webnet_module_system_dofile(struct webnet_session *session)
         if (stat_result == 0)
         {
             rt_enter_critical();
+            info = localtime((time_t *)&file_stat.st_mtime);
+            memset(gmtime_str,0,32);
+            strftime(gmtime_str,sizeof(ctime_str),"%a, %d %b %Y %H:%M:%S GMT",info);
+            
             strcpy(ctime_str, ctime((time_t *)&file_stat.st_mtime));
             rt_exit_critical();
 
             ctime_str[strlen(ctime_str) - 1] = '\0'; /* clear the end \n */
+            gmtime_str[strlen(gmtime_str)] = '\0'; /* clear the end \n */
 
             if ((request->modified != RT_NULL)
-                    && (strcmp(request->modified, ctime_str) == 0))
+                    && ((strcmp(request->modified, ctime_str) == 0)||strcmp(request->modified, gmtime_str) == 0))
             {
                 request->result_code = 304;
                 return WEBNET_MODULE_FINISHED;
