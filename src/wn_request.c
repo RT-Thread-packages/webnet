@@ -180,7 +180,8 @@ const char* webnet_request_get_query(struct webnet_request* request, char* name)
 
     for (index = 0; index < request->query_counter; index ++)
     {
-        if (strncmp(request->query_items[index].name, name, strlen(name)) == 0)
+        if (strncmp(request->query_items[index].name, name, strlen(name)) == 0 &&
+            strlen(name) == strlen(request->query_items[index].name))
             return request->query_items[index].value;
     }
 
