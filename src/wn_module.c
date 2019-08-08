@@ -153,6 +153,8 @@ int webnet_module_system_dofile(struct webnet_session *session)
 
 #if WEBNET_CACHE_LEVEL > 0
     char ctime_str[32];
+    char gmtime_str[32];
+    struct tm* info;
     int stat_result = -1;
 #endif /* WEBNET_CACHE_LEVEL */
 
@@ -204,9 +206,7 @@ int webnet_module_system_dofile(struct webnet_session *session)
         if (stat_result == 0)
         {
             rt_enter_critical();
-            struct tm* info;
             info = localtime((time_t *)&file_stat.st_mtime);
-            char  gmtime_str[32];
             memset(gmtime_str,0,32);
             strftime(gmtime_str,sizeof(ctime_str),"%a, %d %b %Y %H:%M:%S GMT",info);
             
