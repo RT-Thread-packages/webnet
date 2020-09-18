@@ -44,6 +44,7 @@ static const struct webnet_mime_entry mime_tables[] =
     { "png",	"image/png" },
     { "jpeg",	"image/jpeg" },
     { "jpg",	"image/jpeg" },
+    { "svg",	"image/svg+xml" },
     { "avi",	"video/x-msvideo" },
     { "mp3",	"audio/mpeg" },
     { "ogg",	"audio/x-oggvorbis" },
