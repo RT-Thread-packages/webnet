@@ -79,8 +79,8 @@ extern "C" {
 #define WEBNET_USING_COOKIE
 #endif
 
-#define WEBNET_VERSION                 "2.0.0"      /* webnet version string */
-#define WEBNET_VERSION_NUM             0x20000      /* webnet version number */
+#define WEBNET_VERSION                 "2.0.1"      /* webnet version string */
+#define WEBNET_VERSION_NUM             0x20001      /* webnet version number */
 #define WEBNET_THREAD_NAME             "webnet"	    /* webnet thread name */
 
 #define WEBNET_THREAD_STACKSIZE        (4 * 1024)   /* webnet thread stack size */
