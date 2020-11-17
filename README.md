@@ -1,104 +1,105 @@
 # WebNet
 
-## 1、介绍
+[中文页](README_ZH.md) | English
 
-WebNet 软件包是 RT-Thread 自主研发的，基于 HTTP 协议的 Web 服务器实现，它不仅提供设备与 HTTP Client 通讯的基本功能，而且支持多种模块功能扩展，且资源占用少、可裁剪性强，充分满足开发者对嵌入式设备服务器的功能需求。
+## 1 Introduction
 
-WebNet 软件包功能特点如下：
+The WebNet software package is independently developed by RT-Thread and is based on the HTTP protocol web server. It not only provides the basic functions of communication between the device and the HTTP Client, but also supports a variety of module function extensions, with less resource usage, strong tailorability, and sufficient Meet the functional requirements of developers for embedded device servers.
 
-- 支持 HTTP 1.0/1.1
-- 支持 AUTH 基本认证功能
-- 支持 CGI 功能
-- 支持 ASP 变量替换功能
-- 支持 SSI 文件嵌入功能
-- 支持 INDEX 目录文件显示功能
-- 支持 ALIAS 别名访问功能
-- 支持文件上传功能
-- 支持预压缩功能
-- 支持缓存功能
-- 支持断点续传功能
+The features of the WebNet software package are as follows:
 
-更多软件包功能特点介绍请查看 [详细介绍](docs/introduction.md)。 
+- Support HTTP 1.0/1.1
+- Support AUTH basic authentication function
+- Support CGI function
+- Support ASP variable substitution function
+- Support SSI file embedding function
+- Support INDEX directory file display function
+- Support ALIAS alias access function
+- Support file upload function
+- Support pre-compression function
+- Support cache function
+- Support breakpoint resume function
 
-### 1.1 目录结构
+For more information about the features of the software package, please see [Detailed Introduction](docs/introduction.md).
 
-| 名称       | 说明                     |
+### 1.1 Directory structure
+
+| Name | Description |
 | ---------- | ------------------------ |
-| docs       | 文档目录                 |
-| inc        | 头文件目录               |
-| src        | 源文件目录               |
-| module     | 功能模块文件目录         |
-| samples    | 示例文件目录             |
-| LICENSE    | 许可证文件               |
-| README.md  | 软件包使用说明           |
-| SConscript | RT-Thread 默认的构建脚本 |
+| docs | Document directory |
+| inc | Header file directory |
+| src | Source file directory |
+| module | Function module file directory |
+| samples | Sample file directory |
+| LICENSE | License File |
+| README.md | Package Instructions |
+| SConscript | RT-Thread default build script |
 
-### 1.2 许可证
+### 1.2 License
 
-WebNet 软件包遵循 GPL2+ 商业双许可。该软件包可以根据 GNU 标准使用通用公共许可证，详见 LICENSE 文件。如果用于商业应用，可以通过电子邮箱 <business@rt-thread.com > 与我们联系获取商业许可。
+The WebNet software package follows the GPL2+ commercial dual license. The software package can use the General Public License according to the GNU standard, see the LICENSE file for details. If it is used in commercial applications, you can contact us to obtain a commercial license via email <business@rt-thread.com>.
 
-### 1.3 依赖
+### 1.3 Dependency
 
-- RT_Thread 3.0+
-- DFS 文件系统
+- RT-Thread 3.0+
+- DFS file system
 
-## 2、 获取软件包
+## 2. Get the software package
 
-使用 WebNet软件包需要在 RT-Thread 的包管理中选中它，具体路径如下： 
+To use the WebNet software package, you need to select it in the RT-Thread package management. The specific path is as follows:
 
 ```c
 RT-Thread online packages
-    IoT - internet of things  --->
-    	[*] WebNet: A HTTP Server for RT-Thread
-            (80)  Server listen port
-            (16)  Maximum number of server connections
-            (/webnet)   Server root directory
-                  Select supported modules  --->
-                     [ ] LOG: Enanle output log support
-                     [ ] AUTH: Enanle basic HTTP authentication support
-                     [ ] CGI: Enanle Common Gateway Interface support
-                     [ ] ASP: Enanle Active Server Pages support
-                     [ ] SSI: Enanle Server Side Includes support
-                     [ ] INDEX: Enanle list all the file in the directory support
-                     [ ] ALIAS: Enanle alias support
-                     [ ] DAV: Enanle Web-based Distributed Authoring and Versioning support
-                     [ ] UPLOAD: Enanle upload file support
-                     [ ] GZIP: Enable compressed file support by GZIP
+    IoT-internet of things --->
+    [*] WebNet: A HTTP Server for RT-Thread
+            (80) Server listen port
+            (16) Maximum number of server connections
+            (/webnet) Server root directory
+                  Select supported modules --->
+                     [] LOG: Enanle output log support
+                     [] AUTH: Enanle basic HTTP authentication support
+                     [] CGI: Enanle Common Gateway Interface support
+                     [] ASP: Enanle Active Server Pages support
+                     [] SSI: Enanle Server Side Includes support
+                     [] INDEX: Enanle list all the file in the directory support
+                     [] ALIAS: Enanle alias support
+                     [] DAV: Enanle Web-based Distributed Authoring and Versioning support
+                     [] UPLOAD: Enanle upload file support
+                     [] GZIP: Enable compressed file support by GZIP
                      (0) CACHE: Configure cache level
-            [ ]   Enable webnet samples
-            	  Version (latest)  --->
+            [] Enable webnet samples
+            Version (latest) --->
 ```
 
-**Server listen port**：配置服务器监听端口号；
+**Server listen port**: Configure the server listening port number;
 
-**Maximum number of server connections**：配置服务器最大连接数量；
+**Maximum number of server connections**: Configure the maximum number of server connections;
 
-**Server root directory**：配置服务器根目录路径；
+**Server root directory**: Configure the server root directory path;
 
-**Select supported modules**：选择服务器支持的功能模块；
+**Select supported modules**: select the function modules supported by the server;
 
-**Enable webnet samples** ：配置添加服务器示例文件；
+**Enable webnet samples**: configure and add server sample files;
 
-**Version**：配置软件包版本。
+**Version**: Configure the software package version.
 
-配置完成后让 RT-Thread 的包管理器自动更新，或者使用 pkgs --update 命令更新包到 BSP 中。 
+After the configuration is complete, let the RT-Thread package manager automatically update, or use the pkgs --update command to update the package to the BSP.
 
-## 3、使用 WebNet 软件包
+## 3. Use WebNet software package
 
-- 软件包详细介绍，请参考 [软件包介绍](docs/introduction.md)
-- 详细的示例介绍，请参考 [示例文档](docs/samples.md)
-- 如何从零开始使用，请参考 [用户指南](docs/user-guide.md)
-- 完整的 API 文档，请参考 [API 手册](docs/api.md)
-- 软件包工作原理，请参考 [工作原理](docs/principle.md)
-- 更多**详细介绍文档**位于 `/docs` 文件夹下，**使用软件包进行开发前请务必查看**。
+- For detailed description of the software package, please refer to [Package Introduction](docs/introduction.md)
+- For detailed sample introduction, please refer to [Sample Document](docs/samples.md)
+- How to use from scratch, please refer to [User Guide](docs/user-guide.md)
+- For complete API documentation, please refer to [API Manual](docs/api.md)
+- For the working principle of the package, please refer to [Working Principle](docs/principle.md)
+- More **Detailed introduction documents** are located under the `/docs` folder, **Please check before using the package for development**.
 
-## 4、注意事项
+## 4. Matters needing attention
 
-- WebNet 软件包使用需要文件系统支持，需要确保运行设备上能使用文件系统。
-- WebNet 软件包默认未开启任何模块功能支持，使用的需要根据[软件包介绍](docs/introduction.md)在 Env 中开启需要的功能。
+- The use of the WebNet software package requires file system support, and it is necessary to ensure that the file system can be used on the running device.
+- The WebNet software package does not enable any module function support by default. You need to enable the required functions in Env according to [Package Introduction](docs/introduction.md).
 
-## 5、联系方式 & 感谢
+## 5. Contact & Thanks
 
-- 维护：RT-Thread 开发团队
-- 主页：<https://github.com/RT-Thread-packages/webnet>
-
+- Maintenance: RT-Thread development team
+- Homepage: <https://github.com/RT-Thread-packages/webnet>
