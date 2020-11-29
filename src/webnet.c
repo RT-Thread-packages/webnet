@@ -84,6 +84,7 @@ static void webnet_thread(void *parameter)
     fd_set writeset, tempwrtfds;
     int sock_fd, maxfdp1;
     struct sockaddr_in webnet_saddr;
+    static struct timeval rcv_to = {0, 50000};
 
     /* First acquire our socket for listening for connections */
     listenfd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -97,6 +98,9 @@ static void webnet_thread(void *parameter)
     webnet_saddr.sin_family = AF_INET;
     webnet_saddr.sin_addr.s_addr = htonl(INADDR_ANY);
     webnet_saddr.sin_port = htons(webnet_port); /* webnet server port */
+
+    /* Set receive timeout */
+    setsockopt (listenfd, SOL_SOCKET, SO_RCVTIMEO, (void*)&rcv_to, sizeof(rcv_to));
 
     if (bind(listenfd, (struct sockaddr *) &webnet_saddr, sizeof(webnet_saddr)) == -1)
     {
