@@ -100,7 +100,11 @@ static void webnet_thread(void *parameter)
     webnet_saddr.sin_port = htons(webnet_port); /* webnet server port */
 
     /* Set receive timeout for accept() */
-    setsockopt(listenfd, SOL_SOCKET, SO_RCVTIMEO, (void*)&rcv_to, sizeof(rcv_to));
+    if(setsockopt(listenfd, SOL_SOCKET, SO_RCVTIMEO, (void*)&rcv_to, sizeof(rcv_to)) == -1)
+    {
+        LOG_E("Set SO_RCVTIMEO failed, errno=%d\n", errno);
+        goto __exit;
+    }
 
     if (bind(listenfd, (struct sockaddr *) &webnet_saddr, sizeof(webnet_saddr)) == -1)
     {
