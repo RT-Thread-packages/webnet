@@ -99,7 +99,7 @@ static void webnet_thread(void *parameter)
     webnet_saddr.sin_addr.s_addr = htonl(INADDR_ANY);
     webnet_saddr.sin_port = htons(webnet_port); /* webnet server port */
 
-    /* Set receive timeout */
+    /* Set receive timeout for accept() */
     setsockopt (listenfd, SOL_SOCKET, SO_RCVTIMEO, (void*)&rcv_to, sizeof(rcv_to));
 
     if (bind(listenfd, (struct sockaddr *) &webnet_saddr, sizeof(webnet_saddr)) == -1)
