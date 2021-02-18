@@ -54,6 +54,7 @@ static const struct webnet_mime_entry mime_tables[] =
     { "tar",	"application/x-tar" },
     { "zip",	"application/zip" },
     { "xml",	"text/xml" },
+    { "json",	"application/json" },
     { RT_NULL,  RT_NULL }
 };
 
@@ -81,5 +82,5 @@ const char* mime_get_type(const char* url)
     }
 
     /* return text/html as default */
-    return mime_tables[0].type;
+    return mime_tables[1].type;
 }
