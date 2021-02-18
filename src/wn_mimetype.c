@@ -19,6 +19,7 @@
  * Change Logs:
  * Date           Author       Notes
  * 2011-08-02     Bernard      the first version
+ * 2021-02-18     lizhirui     fixed default mimetype,add json minetype
  */
 
 #include <string.h>
