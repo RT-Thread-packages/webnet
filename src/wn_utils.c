@@ -40,8 +40,9 @@ rt_inline int tohex(char c)
 
 int str_path_with(const char *s, const char *t)
 {
-    if (strncasecmp(s, t, strlen(t)) == 0
-            && (strlen(s) == strlen(t) || *(s + strlen(t)) == '/')) return 1;
+    if ((strncasecmp(s, t, strlen(t)) == 0
+            && (strlen(s) == strlen(t) || *(s + strlen(t)) == '/'))
+        ||(strlen(t) == 1 && t[0] == '/')) return 1;
 
     return 0;
 }
