@@ -24,6 +24,7 @@
 #ifndef __WN_SESSION_H__
 #define __WN_SESSION_H__
 
+#include <sys/select.h>
 #include <wn_request.h>
 
 #ifdef RT_USING_SAL

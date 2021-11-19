@@ -24,6 +24,7 @@
 
 #include <stdint.h>
 #include <string.h>
+#include <sys/errno.h>
 
 #include <webnet.h>
 #include <wn_module.h>
