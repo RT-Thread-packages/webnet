@@ -51,7 +51,7 @@ struct webnet_session* webnet_session_create(int listenfd)
     {
         socklen_t clilen;
 		
-        memset(session, 0x0, sizeof(struct webnet_session));
+        rt_memset(session, 0x0, sizeof(struct webnet_session));
         session->session_ops = RT_NULL;
 
         clilen = sizeof(struct sockaddr_in);
@@ -158,7 +158,7 @@ void webnet_session_printf(struct webnet_session *session, const char* fmt, ...)
     rt_uint32_t length;
 
     va_start(args, fmt);
-    length = vsnprintf((char*)(session->buffer),
+    length = rt_vsnprintf((char*)(session->buffer),
                        sizeof(session->buffer) - 1,
                        fmt, args);
     session->buffer[length] = '\0';

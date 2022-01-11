@@ -173,7 +173,7 @@ int webnet_module_system_dofile(struct webnet_session *session)
 
         if (path_gz != RT_NULL)
         {
-            sprintf(path_gz, "%s.gz", request->path);
+            rt_sprintf(path_gz, "%s.gz", request->path);
             stat_result = stat(request->path, &file_stat);
             wn_free(path_gz);
         }
@@ -207,7 +207,7 @@ int webnet_module_system_dofile(struct webnet_session *session)
         {
             rt_enter_critical();
             info = localtime((time_t *)&file_stat.st_mtime);
-            memset(gmtime_str,0,32);
+            rt_memset(gmtime_str,0,32);
             strftime(gmtime_str,sizeof(ctime_str),"%a, %d %b %Y %H:%M:%S GMT",info);
             
             strcpy(ctime_str, ctime((time_t *)&file_stat.st_mtime));
@@ -236,7 +236,7 @@ int webnet_module_system_dofile(struct webnet_session *session)
 
         if (path_gz != RT_NULL)
         {
-            sprintf(path_gz, "%s.gz", request->path);
+            rt_sprintf(path_gz, "%s.gz", request->path);
             fd = open(path_gz, O_RDONLY, 0);
             wn_free(path_gz);
 

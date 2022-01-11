@@ -146,7 +146,7 @@ static char* memstrs(const char* str, size_t length, int num, ...)
     for (index = 0; index < num; index++)
     {
         index_str = va_arg(args, char*);
-        memcpy(ptr, index_str, strlen(index_str));
+        rt_memcpy(ptr, index_str, strlen(index_str));
         ptr += strlen(index_str);
     }
     substr[total_size] = '\0';
@@ -385,7 +385,7 @@ static void _handle_section(struct webnet_session* session, char* buffer, rt_siz
         {
             int value_size = ptr - buffer + 1;
             name_entry.value = wn_malloc(value_size);
-            memcpy(name_entry.value, buffer, value_size - 1);
+            rt_memcpy(name_entry.value, buffer, value_size - 1);
             name_entry.value[value_size - 1] = '\0';
         }
     }
