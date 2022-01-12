@@ -1,20 +1,7 @@
 /*
- * File      : wn_module.c
- * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * Copyright (c) 2006-2022, RT-Thread Development Team
  *
- * This software is dual-licensed: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation. For the terms of this
- * license, see <http://www.gnu.org/licenses/>.
- *
- * You are free to use this software under the terms of the GNU General
- * Public License, but WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- *
- * Alternatively for commercial application, you can contact us
- * by email <business@rt-thread.com> for commercial license.
+ * SPDX-License-Identifier: Apache-2.0
  *
  * Change Logs:
  * Date           Author       Notes
@@ -108,7 +95,7 @@ static void _webnet_dofile_handle(struct webnet_session *session, int event)
             {
                 goto __exit;
             }
-       
+
             if(length > WEBNET_SESSION_BUFSZ)
             {
                 length = WEBNET_SESSION_BUFSZ;
@@ -116,7 +103,7 @@ static void _webnet_dofile_handle(struct webnet_session *session, int event)
            lseek(fd, session->request->pos_start, SEEK_SET);
            session->request->pos_start += length;
         }
-#endif            
+#endif
         readbytes = read(fd, session->buffer, length);
         if (readbytes <= 0) /* end of file */
             goto __exit;
@@ -209,7 +196,7 @@ int webnet_module_system_dofile(struct webnet_session *session)
             info = localtime((time_t *)&file_stat.st_mtime);
             rt_memset(gmtime_str,0,32);
             strftime(gmtime_str,sizeof(ctime_str),"%a, %d %b %Y %H:%M:%S GMT",info);
-            
+
             strcpy(ctime_str, ctime((time_t *)&file_stat.st_mtime));
             rt_exit_critical();
 
@@ -358,20 +345,20 @@ int webnet_module_system_dofile(struct webnet_session *session)
                           file_length);
 
 #ifdef WEBNET_USING_KEEPALIVE
-	if(session->request->connection == WEBNET_CONN_KEEPALIVE)
-	{
-		webnet_session_printf(session,
+    if(session->request->connection == WEBNET_CONN_KEEPALIVE)
+    {
+        webnet_session_printf(session,
                           "Connection: %s\r\n",
                           "Keep-Alive");
-	}
-	else
-	{
-		webnet_session_printf(session,
+    }
+    else
+    {
+        webnet_session_printf(session,
                           "Connection: %s\r\n",
                           "close");
-	}
+    }
 #else
-	webnet_session_printf(session,
+    webnet_session_printf(session,
                         "Connection: %s\r\n",
                         "close");
 #endif
@@ -545,7 +532,7 @@ int webnet_module_handle_uri(struct webnet_session *session)
     while (default_files[index] != RT_NULL)
     {
         struct stat file_stat;
-        
+
         /* made a full path */
         rt_snprintf(full_path, WEBNET_PATH_MAX, "%s/%s%s",
                     webnet_get_root(), request->path, default_files[index]);
