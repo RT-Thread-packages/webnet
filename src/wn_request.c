@@ -502,7 +502,7 @@ int webnet_request_parse_post(struct webnet_request* request, char* buffer, int 
         if (request->query_offset + length > request->content_length)
             length = request->content_length - request->query_offset;
 
-        memcpy(&request->query[request->query_offset], buffer, length);
+        rt_memcpy(&request->query[request->query_offset], buffer, length);
         request->query_offset += length;
 
         if (request->query_offset == request->content_length)
@@ -694,7 +694,7 @@ void webnet_request_parse(struct webnet_request* request, char* buffer, int leng
                          * NOTIC: the rest of buffer must not be great than session buffer
                          * Therefore, the size of read buffer can equal to the size of session buffer.
                          */
-                        memcpy(session->buffer, request->query, session->buffer_offset);
+                        rt_memcpy(session->buffer, request->query, session->buffer_offset);
                     }
                     request->query = RT_NULL;
                     return;
@@ -722,7 +722,7 @@ void webnet_request_parse(struct webnet_request* request, char* buffer, int leng
                 if (read_length > 0)
                 {
                     if (read_length > request->content_length) read_length = request->content_length;
-                    memcpy(read_ptr, request->query, read_length);
+                    rt_memcpy(read_ptr, request->query, read_length);
                 }
                 request->query = read_ptr;
 

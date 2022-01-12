@@ -94,7 +94,7 @@ static int upload_open(struct webnet_session *session)
             goto _exit;
         }
 
-        sprintf(file_path, "%s/%s/%s", sd_upload, upload_dir, file_name);
+        rt_sprintf(file_path, "%s/%s/%s", sd_upload, upload_dir, file_name);
 
         rt_kprintf("save to: %s\r\n", file_path);
 
