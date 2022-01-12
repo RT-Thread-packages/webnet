@@ -146,7 +146,7 @@ static char* memstrs(const char* str, size_t length, int num, ...)
     return ptr;
 }
 
-#ifndef __GNUC__
+#if !(defined(__GNUC__) && !defined(__ARMCC_VERSION)/*GCC*/)
 static void* memrchr(const void *s, int c, size_t n)
 {
     register const char* t=s;
