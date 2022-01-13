@@ -158,7 +158,7 @@ void webnet_session_printf(struct webnet_session *session, const char* fmt, ...)
     rt_uint32_t length;
 
     va_start(args, fmt);
-    length = rt_vsnprintf((char*)(session->buffer),
+    length = vsnprintf((char*)(session->buffer),
                        sizeof(session->buffer) - 1,
                        fmt, args);
     session->buffer[length] = '\0';
