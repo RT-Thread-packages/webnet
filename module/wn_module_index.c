@@ -1,7 +1,17 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * File      : wn_module_index.c
+ * This file is part of RT-Thread RTOS
+ * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
  *
- * SPDX-License-Identifier: Apache-2.0
+ * This software is dual-licensed: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation. For the terms of this
+ * license, see <http://www.gnu.org/licenses/>.
+ *
+ * You are free to use this software under the terms of the GNU General
+ * Public License, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
  *
  * Alternatively for commercial application, you can contact us
  * by email <business@rt-thread.com> for commercial license.
@@ -46,7 +56,7 @@ int webnet_module_dirindex(struct webnet_session* session, int event)
         {
             return WEBNET_MODULE_CONTINUE;
         }
-
+        
         dir = opendir(request->path);
         if (dir != RT_NULL)
         {

@@ -1,7 +1,24 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * File      : webnet.h
+ * This file is part of RT-Thread RTOS
+ * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
  *
- * SPDX-License-Identifier: Apache-2.0
+ * This software is dual-licensed: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation. For the terms of this
+ * license, see <http://www.gnu.org/licenses/>.
+ *
+ * You are free to use this software under the terms of the GNU General
+ * Public License, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ * Alternatively for commercial application, you can contact us
+ * by email <business@rt-thread.com> for commercial license.
+ *
+ *  You should have received a copy of the GNU General Public License along
+ *  with this program; if not, write to the Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
  * Change Logs:
  * Date           Author       Notes
@@ -53,7 +70,7 @@ extern "C" {
 #ifndef WEBNET_USING_RANGE
 #define WEBNET_USING_RANGE
 #endif
-
+    
 #ifndef WEBNET_USING_KEEPALIVE
 #define WEBNET_USING_KEEPALIVE
 #endif
@@ -64,7 +81,7 @@ extern "C" {
 
 #define WEBNET_VERSION                 "2.0.3"      /* webnet version string */
 #define WEBNET_VERSION_NUM             0x20003      /* webnet version number */
-#define WEBNET_THREAD_NAME             "webnet"     /* webnet thread name */
+#define WEBNET_THREAD_NAME             "webnet"	    /* webnet thread name */
 
 #define WEBNET_THREAD_STACKSIZE        (4 * 1024)   /* webnet thread stack size */
 #define WEBNET_PRIORITY                20           /* webnet thread priority */

@@ -1,7 +1,20 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * File      : wn_sample_upload.c
+ * This file is part of RT-Thread RTOS
+ * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
  *
- * SPDX-License-Identifier: Apache-2.0
+ * This software is dual-licensed: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation. For the terms of this
+ * license, see <http://www.gnu.org/licenses/>.
+ *
+ * You are free to use this software under the terms of the GNU General
+ * Public License, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ * Alternatively for commercial application, you can contact us
+ * by email <business@rt-thread.com> for commercial license.
  *
  * Change Logs:
  * Date           Author       Notes
@@ -30,7 +43,7 @@ static int file_size = 0;
 const char *get_file_name(struct webnet_session *session)
 {
     const char *path = RT_NULL, *path_last = RT_NULL;
-
+    
     path_last = webnet_upload_get_filename(session);
     if (path_last == RT_NULL)
     {
@@ -51,7 +64,7 @@ const char *get_file_name(struct webnet_session *session)
         path++;
         path_last = path;
     }
-
+    
     return path_last;
 }
 
@@ -59,7 +72,7 @@ static int upload_open(struct webnet_session *session)
 {
     int fd;
     const char *file_name = RT_NULL;
-
+    
     file_name = get_file_name(session);
     rt_kprintf("Upload FileName: %s\n", file_name);
     rt_kprintf("Content-Type   : %s\n", webnet_upload_get_content_type(session));

@@ -1,7 +1,17 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * File      : wn_request.h
+ * This file is part of RT-Thread RTOS
+ * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
  *
- * SPDX-License-Identifier: Apache-2.0
+ * This software is dual-licensed: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation. For the terms of this
+ * license, see <http://www.gnu.org/licenses/>.
+ *
+ * You are free to use this software under the terms of the GNU General
+ * Public License, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
  *
  * Alternatively for commercial application, you can contact us
  * by email <business@rt-thread.com> for commercial license.
@@ -31,14 +41,14 @@ enum webnet_method
     WEBNET_POST,
     WEBNET_HEADER,
     WEBNET_HEAD,
-    WEBNET_PUT,
-    WEBNET_OPTIONS,
-    WEBNET_PROPFIND,
-    WEBNET_PROPPATCH,
-    WEBNET_DELETE,
-    WEBNET_CONNECT,
-    WEBNET_MKCOL,
-    WEBNET_MOVE,
+	WEBNET_PUT,
+	WEBNET_OPTIONS,
+	WEBNET_PROPFIND,
+	WEBNET_PROPPATCH,
+	WEBNET_DELETE,
+	WEBNET_CONNECT,
+	WEBNET_MKCOL,
+	WEBNET_MOVE,
     WEBNET_SUBSCRIBE,
     WEBNET_UNSUBSCRIBE,
     WEBNET_NOTIFY,
@@ -82,8 +92,8 @@ struct webnet_request
     size_t pos_end;
 #endif /* WEBNET_USING_RANGE */
 #ifdef WEBNET_USING_DAV
-    char* depth;
-    char* destination;
+	char* depth;
+	char* destination;
 #endif /* WEBNET_USING_DAV */
 
     /* DMR */
@@ -96,7 +106,7 @@ struct webnet_request
 
     /* query information */
     char* query;
-    int query_offset;
+	int query_offset;
     struct webnet_query_item* query_items;
     rt_uint16_t query_counter;
 
