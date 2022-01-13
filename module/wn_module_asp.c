@@ -1,7 +1,20 @@
 /*
- * Copyright (c) 2006-2022, RT-Thread Development Team
+ * File      : wn_module_asp.c
+ * This file is part of RT-Thread RTOS
+ * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
  *
- * SPDX-License-Identifier: Apache-2.0
+ * This software is dual-licensed: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation. For the terms of this
+ * license, see <http://www.gnu.org/licenses/>.
+ *
+ * You are free to use this software under the terms of the GNU General
+ * Public License, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ * Alternatively for commercial application, you can contact us
+ * by email <business@rt-thread.com> for commercial license.
  *
  * Change Logs:
  * Date           Author       Notes
@@ -113,7 +126,7 @@ static void _default_asp_handler(struct webnet_session* session, const char* nam
         total = 1024*32;
         used = 1024*16;
         max_used = 1024*24;
-
+		
         webnet_session_printf(session, "current %d/maximal used %d/total %d", used, max_used, total);
     }
     else if (strncmp(name, "TICK", 4) == 0)
