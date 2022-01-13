@@ -25,8 +25,6 @@
 #include <wn_module.h>
 #include <wn_utils.h>
 
-#include <strings.h>
-
 #ifdef RT_USING_DFS
 #include <dfs_posix.h>
 #endif
@@ -160,6 +158,27 @@ static char* memstrs(const char* str, size_t length, int num, ...)
 
     return ptr;
 }
+
+#if !(defined(__GNUC__) && !defined(__ARMCC_VERSION)/*GCC*/)
+static void* memrchr(const void *s, int c, size_t n)
+{
+    register const char* t=s;
+    register const char* last=0;
+    int i;
+
+    t = t + n;
+    for (i=n; i; --i)
+    {
+        if (*t==c)
+        {
+            last=t;
+            break;
+        }
+        t--;
+    }
+    return (void*)last; /* man, what an utterly b0rken prototype */
+}
+#endif
 
 static char* _webnet_module_upload_parse_header(struct webnet_session* session, char* buffer, rt_size_t length)
 {
