@@ -1,7 +1,7 @@
 /*
  * File      : wn_module_ssi.c
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -30,12 +30,12 @@
 
 #if defined(WEBNET_USING_SSI)
 
-#define SSI_INCLUDE_STRING	"<!--#include "
-#define SSI_EXEC_STRING		"<!--#exec "
-#define SSI_VIRTUAL_STRING	"virtual=\""
-#define SSI_FILE_STRING		"file=\""
-#define SSI_CGI_STRING		"cgi=\""
-#define SSI_END_STRING		"\" -->"
+#define SSI_INCLUDE_STRING  "<!--#include "
+#define SSI_EXEC_STRING     "<!--#exec "
+#define SSI_VIRTUAL_STRING  "virtual=\""
+#define SSI_FILE_STRING     "file=\""
+#define SSI_CGI_STRING      "cgi=\""
+#define SSI_END_STRING      "\" -->"
 
 static void _webnet_ssi_sendfile(struct webnet_session* session, const char* filename)
 {

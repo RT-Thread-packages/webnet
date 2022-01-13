@@ -1,7 +1,7 @@
 /*
  * File      : wn_session.c
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -50,7 +50,7 @@ struct webnet_session* webnet_session_create(int listenfd)
     if (session != RT_NULL)
     {
         socklen_t clilen;
-		
+
         rt_memset(session, 0x0, sizeof(struct webnet_session));
         session->session_ops = RT_NULL;
 
@@ -309,7 +309,7 @@ void webnet_session_set_header(struct webnet_session *session, const char* mimet
     }
     /* get the total length */
     length = ptr - (char*)session->buffer;
-	
+
     /* invoke webnet event */
     if (webnet_module_handle_event(session, WEBNET_EVENT_RSP_HEADER) == WEBNET_MODULE_CONTINUE)
     {
@@ -327,7 +327,7 @@ static void _webnet_session_handle_read(struct webnet_session* session)
     buffer_ptr = &session->buffer[session->buffer_offset];
     /* to read data from the socket */
     read_length = webnet_session_read(session, (char*)buffer_ptr, session->buffer_length - session->buffer_offset);
-	
+
     if (read_length > 0) session->buffer_offset += read_length;
 
     if (session->buffer_offset)
@@ -588,7 +588,7 @@ void webnet_sessions_handle_fds(fd_set *readset, fd_set *writeset)
 
             /* whether close this session */
             if (session->session_ops == RT_NULL || session->session_phase == WEB_PHASE_CLOSE)
-            {	
+            {
                 /* close this session */
                 webnet_session_close(session);
             }

@@ -1,7 +1,7 @@
 /*
  * File      : wn_mimetype.c
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -35,27 +35,27 @@ struct webnet_mime_entry
 
 static const struct webnet_mime_entry mime_tables[] =
 {
-    { "any",	"application/binary" }, /* default. */
-    { "html",	"text/html" },
-    { "htm",	"text/html" },
-    { "css",	"text/css" },
-    { "txt",	"text/plain" },
-    { "pdf",	"application/pdf" },
-    { "gif",	"image/gif" },
-    { "png",	"image/png" },
-    { "jpeg",	"image/jpeg" },
-    { "jpg",	"image/jpeg" },
-    { "svg",	"image/svg+xml" },
-    { "avi",	"video/x-msvideo" },
-    { "mp3",	"audio/mpeg" },
-    { "ogg",	"audio/x-oggvorbis" },
-    { "wav",	"audio/x-wav" },
-    { "class",	"application/octet-stream" },
-    { "js",		"application/x-javascript" },
-    { "tar",	"application/x-tar" },
-    { "zip",	"application/zip" },
-    { "xml",	"text/xml" },
-    { "json",	"application/json" },
+    { "any",    "application/binary" }, /* default. */
+    { "html",   "text/html" },
+    { "htm",    "text/html" },
+    { "css",    "text/css" },
+    { "txt",    "text/plain" },
+    { "pdf",    "application/pdf" },
+    { "gif",    "image/gif" },
+    { "png",    "image/png" },
+    { "jpeg",   "image/jpeg" },
+    { "jpg",    "image/jpeg" },
+    { "svg",    "image/svg+xml" },
+    { "avi",    "video/x-msvideo" },
+    { "mp3",    "audio/mpeg" },
+    { "ogg",    "audio/x-oggvorbis" },
+    { "wav",    "audio/x-wav" },
+    { "class",  "application/octet-stream" },
+    { "js",     "application/x-javascript" },
+    { "tar",    "application/x-tar" },
+    { "zip",    "application/zip" },
+    { "xml",    "text/xml" },
+    { "json",   "application/json" },
     { RT_NULL,  RT_NULL }
 };
 

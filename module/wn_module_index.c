@@ -1,7 +1,7 @@
 /*
  * File      : wn_module_index.c
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -56,7 +56,7 @@ int webnet_module_dirindex(struct webnet_session* session, int event)
         {
             return WEBNET_MODULE_CONTINUE;
         }
-        
+
         dir = opendir(request->path);
         if (dir != RT_NULL)
         {

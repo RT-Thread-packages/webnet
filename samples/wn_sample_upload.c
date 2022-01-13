@@ -1,7 +1,7 @@
 /*
  * File      : wn_sample_upload.c
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -43,7 +43,7 @@ static int file_size = 0;
 const char *get_file_name(struct webnet_session *session)
 {
     const char *path = RT_NULL, *path_last = RT_NULL;
-    
+
     path_last = webnet_upload_get_filename(session);
     if (path_last == RT_NULL)
     {
@@ -64,7 +64,7 @@ const char *get_file_name(struct webnet_session *session)
         path++;
         path_last = path;
     }
-    
+
     return path_last;
 }
 
@@ -72,7 +72,7 @@ static int upload_open(struct webnet_session *session)
 {
     int fd;
     const char *file_name = RT_NULL;
-    
+
     file_name = get_file_name(session);
     rt_kprintf("Upload FileName: %s\n", file_name);
     rt_kprintf("Content-Type   : %s\n", webnet_upload_get_content_type(session));

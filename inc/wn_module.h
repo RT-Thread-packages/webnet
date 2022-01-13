@@ -1,7 +1,7 @@
 /*
  * File      : wn_module.h
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -37,21 +37,21 @@ extern "C" {
 #endif
 
 /* initialization event */
-#define WEBNET_EVENT_INIT			(1 << 0)
+#define WEBNET_EVENT_INIT           (1 << 0)
 /* map uri request to physical url */
-#define WEBNET_EVENT_URI_PHYSICAL	(1 << 1)
+#define WEBNET_EVENT_URI_PHYSICAL   (1 << 1)
 /* uri request */
-#define WEBNET_EVENT_URI_POST		(1 << 2)
+#define WEBNET_EVENT_URI_POST       (1 << 2)
 /* header of response */
-#define WEBNET_EVENT_RSP_HEADER		(1 << 3)
+#define WEBNET_EVENT_RSP_HEADER     (1 << 3)
 /* file content of response */
-#define WEBNET_EVENT_RSP_FILE		(1 << 4)
+#define WEBNET_EVENT_RSP_FILE       (1 << 4)
 
 
 /* continue other modules */
-#define WEBNET_MODULE_CONTINUE		0
+#define WEBNET_MODULE_CONTINUE      0
 /* this session is finished */
-#define WEBNET_MODULE_FINISHED		1
+#define WEBNET_MODULE_FINISHED      1
 
 int webnet_module_handle_event(struct webnet_session* session, int event);
 int webnet_module_system_dofile(struct webnet_session* session);

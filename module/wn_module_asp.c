@@ -1,7 +1,7 @@
 /*
  * File      : wn_module_asp.c
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -126,7 +126,7 @@ static void _default_asp_handler(struct webnet_session* session, const char* nam
         total = 1024*32;
         used = 1024*16;
         max_used = 1024*24;
-		
+
         webnet_session_printf(session, "current %d/maximal used %d/total %d", used, max_used, total);
     }
     else if (strncmp(name, "TICK", 4) == 0)

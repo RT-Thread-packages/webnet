@@ -1,7 +1,7 @@
 /*
  * File      : webnet.h
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -70,7 +70,7 @@ extern "C" {
 #ifndef WEBNET_USING_RANGE
 #define WEBNET_USING_RANGE
 #endif
-    
+
 #ifndef WEBNET_USING_KEEPALIVE
 #define WEBNET_USING_KEEPALIVE
 #endif
@@ -81,7 +81,7 @@ extern "C" {
 
 #define WEBNET_VERSION                 "2.0.3"      /* webnet version string */
 #define WEBNET_VERSION_NUM             0x20003      /* webnet version number */
-#define WEBNET_THREAD_NAME             "webnet"	    /* webnet thread name */
+#define WEBNET_THREAD_NAME             "webnet"     /* webnet thread name */
 
 #define WEBNET_THREAD_STACKSIZE        (4 * 1024)   /* webnet thread stack size */
 #define WEBNET_PRIORITY                20           /* webnet thread priority */

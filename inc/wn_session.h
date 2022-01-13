@@ -1,7 +1,7 @@
 /*
  * File      : wn_session.h
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -29,7 +29,7 @@
 
 #ifdef RT_USING_SAL
 #include <sys/socket.h>
-#else 
+#else
 #include <lwip/sockets.h>
 #endif
 
@@ -37,14 +37,14 @@
 extern "C" {
 #endif
 
-#define WEBNET_SESSION_BUFSZ	(4 * 1024)
+#define WEBNET_SESSION_BUFSZ    (4 * 1024)
 
 /* close session */
-#define WEBNET_EVENT_CLOSE			(1 << 5)
+#define WEBNET_EVENT_CLOSE          (1 << 5)
 /* read  session */
-#define WEBNET_EVENT_READ			(1 << 6)
+#define WEBNET_EVENT_READ           (1 << 6)
 /* write session */
-#define WEBNET_EVENT_WRITE			(1 << 7)
+#define WEBNET_EVENT_WRITE          (1 << 7)
 
 
 struct webnet_session_ops
@@ -55,11 +55,11 @@ struct webnet_session_ops
 
 enum webnet_session_phase
 {
-	WEB_PHASE_METHOD = 0, 	/* parse method */
-	WEB_PHASE_HEADER, 		/* handle web request header */
-	WEB_PHASE_QUERY,        /* handle web query */
-	WEB_PHASE_RESPONSE,		/* handle web response */
-	WEB_PHASE_CLOSE,		/* to close session */
+    WEB_PHASE_METHOD = 0,   /* parse method */
+    WEB_PHASE_HEADER,       /* handle web request header */
+    WEB_PHASE_QUERY,        /* handle web query */
+    WEB_PHASE_RESPONSE,     /* handle web response */
+    WEB_PHASE_CLOSE,        /* to close session */
 };
 
 struct webnet_session
@@ -78,10 +78,10 @@ struct webnet_session
     rt_uint16_t buffer_offset;
     rt_uint8_t  buffer[WEBNET_SESSION_BUFSZ];
 
-	/* session phase */
-	rt_uint32_t  session_phase;
+    /* session phase */
+    rt_uint32_t  session_phase;
 
-	rt_uint32_t  session_event_mask;
+    rt_uint32_t  session_event_mask;
     const struct webnet_session_ops* session_ops;
     rt_uint32_t user_data;
 };

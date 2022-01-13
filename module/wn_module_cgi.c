@@ -1,7 +1,7 @@
 /*
  * File      : wn_module_cgi.c
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -33,7 +33,7 @@
 
 #ifdef WEBNET_USING_CGI
 
-#define CGI_ROOT_PATH_MAX	64
+#define CGI_ROOT_PATH_MAX   64
 
 static char _cgi_root[CGI_ROOT_PATH_MAX] = {0};
 struct webnet_cgi_item
