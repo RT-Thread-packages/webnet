@@ -1,7 +1,7 @@
 /*
  * File      : wn_session.c
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -158,7 +158,7 @@ void webnet_session_printf(struct webnet_session *session, const char* fmt, ...)
     rt_uint32_t length;
 
     va_start(args, fmt);
-    length = rt_vsnprintf((char*)(session->buffer),
+    length = vsnprintf((char*)(session->buffer),
                        sizeof(session->buffer) - 1,
                        fmt, args);
     session->buffer[length] = '\0';

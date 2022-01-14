@@ -1,7 +1,7 @@
 /*
  * File      : webnet.c
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as

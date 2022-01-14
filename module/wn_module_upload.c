@@ -1,7 +1,7 @@
 /*
  * File      : wn_module_upload.c
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2022, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
  *
  * This software is dual-licensed: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -24,8 +24,6 @@
 #include <webnet.h>
 #include <wn_module.h>
 #include <wn_utils.h>
-
-#include <strings.h>
 
 #ifdef RT_USING_DFS
 #include <dfs_posix.h>
@@ -160,6 +158,27 @@ static char* memstrs(const char* str, size_t length, int num, ...)
 
     return ptr;
 }
+
+#if !(defined(__GNUC__) && !defined(__ARMCC_VERSION)/*GCC*/)
+static void* memrchr(const void *s, int c, size_t n)
+{
+    register const char* t=s;
+    register const char* last=0;
+    int i;
+
+    t = t + n;
+    for (i=n; i; --i)
+    {
+        if (*t==c)
+        {
+            last=t;
+            break;
+        }
+        t--;
+    }
+    return (void*)last; /* man, what an utterly b0rken prototype */
+}
+#endif
 
 static char* _webnet_module_upload_parse_header(struct webnet_session* session, char* buffer, rt_size_t length)
 {
