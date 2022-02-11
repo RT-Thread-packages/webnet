@@ -100,16 +100,22 @@ static void _webnet_request_parse_query(struct webnet_request* request)
                 *ptr = '\0';
                 ptr ++;
                 request->query_items[index].value = ptr;
-                urldecode(request->query_items[index].value, strlen(request->query_items[index].value));
             }
             else ptr ++;
         }
 
-        if (*ptr == '\0') break;
+        if (*ptr == '\0')
+        {
+            urldecode(request->query_items[index].value, ptr - request->query_items[index].value);
+            break;
+        }
+        
         if (*ptr == '&')
         {
             /* make a item */
             *ptr = '\0';
+            urldecode(request->query_items[index].value, ptr - request->query_items[index].value);
+            
             ptr ++;
             while (*ptr == '&' && *ptr != '\0' && ptr <= end_ptr)ptr ++;
             if (*ptr == '\0') break;
