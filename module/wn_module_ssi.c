@@ -19,7 +19,9 @@
  * Change Logs:
  * Date           Author       Notes
  * 2012-06-25     Bernard      the first version
+ * 2023-12-10     RCSN         add virtual handler
  */
+#include <string.h>
 #include <webnet.h>
 #include <wn_session.h>
 #include <wn_module.h>
@@ -36,6 +38,17 @@
 #define SSI_FILE_STRING     "file=\""
 #define SSI_CGI_STRING      "cgi=\""
 #define SSI_END_STRING      "\" -->"
+
+#if defined(WEBNET_USING_SSI_VIRTUAL_HANDLER)
+struct webnet_ssi_virtual_item
+{
+    const char* name;
+    void (*handler)(struct webnet_session* session);
+};
+static struct webnet_ssi_virtual_item* _ssi_virtual_items = RT_NULL;
+static rt_uint32_t _ssi_virtual_count = 0;
+
+#endif
 
 static void _webnet_ssi_sendfile(struct webnet_session* session, const char* filename)
 {
@@ -151,12 +164,24 @@ static void _webnet_ssi_dofile(struct webnet_session* session, int fd)
                 filename = include_begin + sizeof(SSI_VIRTUAL_STRING) - 1;
                 include_end = strstr(filename, "\"");
                 *include_end = '\0';
-
+#if defined(WEBNET_USING_SSI_VIRTUAL_HANDLER)
+                rt_uint32_t index;
+                for (index = 0; index < _ssi_virtual_count; index++)
+                {
+                    if ((strlen(filename) == strlen(_ssi_virtual_items[index].name))
+                        && strncasecmp(filename, _ssi_virtual_items[index].name, strlen(_ssi_virtual_items[index].name)) == 0)
+                    {
+                        /* found it */
+                        _ssi_virtual_items[index].handler(session);
+                    }
+                }
+#else
                 if (webnet_session_get_physical_path(session, filename, path) == 0)
                 {
                     _webnet_ssi_sendfile(session, path);
                 }
             }
+#endif
             else
             {
                 include_begin = strstr(ssi_begin, SSI_FILE_STRING);
@@ -253,5 +278,28 @@ int webnet_module_ssi(struct webnet_session* session, int event)
 
     return WEBNET_MODULE_CONTINUE;
 }
+
+#if defined(WEBNET_USING_SSI_VIRTUAL_HANDLER)
+
+void webnet_ssi_virtual_register(const char* name, void (*handler)(struct webnet_session* session))
+{
+    if (_ssi_virtual_items == RT_NULL)
+    {
+        _ssi_virtual_count = 1;
+        _ssi_virtual_items = (struct webnet_ssi_virtual_item*) wn_malloc (sizeof(struct webnet_ssi_virtual_item) * _ssi_virtual_count);
+    }
+    else
+    {
+        _ssi_virtual_count += 1;
+        _ssi_virtual_items = (struct webnet_ssi_virtual_item*) wn_realloc (_ssi_virtual_items, sizeof(struct webnet_ssi_virtual_item) * _ssi_virtual_count);
+    }
+
+    RT_ASSERT(_ssi_virtual_items != RT_NULL);
+    _ssi_virtual_items[_ssi_virtual_count - 1].name = name;
+    _ssi_virtual_items[_ssi_virtual_count - 1].handler = handler;
+}
+RTM_EXPORT(webnet_ssi_virtual_register);
+
+#endif
 
 #endif
