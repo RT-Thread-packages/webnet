@@ -79,7 +79,10 @@ void webnet_cgi_set_root(const char* root);
 void webnet_auth_set(const char* path, const char* username_password);
 /* set directory alias */
 void webnet_alias_set(char* old_path, char* new_path);
-
+#if defined(WEBNET_USING_SSI_VIRTUAL_HANDLER)
+/* register ssi virtual event */
+void webnet_ssi_virtual_register(const char* name, void (*handler)(struct webnet_session* session));
+#endif
 /* upload module */
 struct webnet_module_upload_entry
 {
