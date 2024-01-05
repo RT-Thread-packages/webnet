@@ -180,8 +180,8 @@ static void _webnet_ssi_dofile(struct webnet_session* session, int fd)
                 {
                     _webnet_ssi_sendfile(session, path);
                 }
-            }
 #endif
+            }
             else
             {
                 include_begin = strstr(ssi_begin, SSI_FILE_STRING);
