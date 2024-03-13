@@ -28,7 +28,11 @@
 #include <wn_utils.h>
 
 #ifdef RT_USING_DFS
+#if RT_VER_NUM >= 0x40100
+#include <strings.h> /* fix strncasecmp */
+#else
 #include <dfs_posix.h>
+#endif /*RT_VER_NUM >= 0x40100*/
 #endif
 
 #ifdef WEBNET_USING_CGI

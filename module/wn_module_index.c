@@ -27,9 +27,13 @@
 #include <wn_utils.h>
 
 #ifdef RT_USING_DFS
+#if RT_VER_NUM >= 0x40100
+#include <dirent.h> /* fix DIR */
+#include <fcntl.h> /* fix S_IFDIR */
+#else
 #include <dfs_posix.h>
+#endif /*RT_VER_NUM >= 0x40100*/
 #endif
-
 #ifdef WEBNET_USING_INDEX
 
 int webnet_module_dirindex(struct webnet_session* session, int event)

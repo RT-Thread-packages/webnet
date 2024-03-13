@@ -31,7 +31,13 @@
 #include <wn_utils.h>
 
 #ifdef RT_USING_DFS
+#if RT_VER_NUM >= 0x40100
+#include <fcntl.h> /* fix O_RDONLY */
+#include <unistd.h> /* fix lseek */
+#include <stdlib.h> /* fix atoi */
+#else
 #include <dfs_posix.h>
+#endif /*RT_VER_NUM >= 0x40100*/
 #endif
 
 static int _webnet_module_system_init(struct webnet_session *session, int event)
