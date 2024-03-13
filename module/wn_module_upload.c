@@ -26,7 +26,11 @@
 #include <wn_utils.h>
 
 #ifdef RT_USING_DFS
+#if RT_VER_NUM >= 0x40100
+#include <fcntl.h> /* fix O_WRONLY */
+#else
 #include <dfs_posix.h>
+#endif /*RT_VER_NUM >= 0x40100*/
 #endif
 
 #if defined(WEBNET_USING_UPLOAD)

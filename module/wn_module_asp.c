@@ -25,7 +25,12 @@
 #include <rtthread.h>
 
 #ifdef RT_USING_DFS
+#if RT_VER_NUM >= 0x40100
+#include <stdio.h> /* fix SEEK_END */
+#include <fcntl.h> /* fix O_RDONLY */
+#else
 #include <dfs_posix.h>
+#endif /*RT_VER_NUM >= 0x40100*/
 #endif
 
 #ifdef RT_USING_SAL
