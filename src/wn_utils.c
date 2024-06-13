@@ -279,6 +279,11 @@ int urldecode(char *str, int len)
     int value;
     int c;
 
+    if (data == RT_NULL)
+    {
+        return 0;
+    }
+
     while (len--)
     {
         if (*data == '+')
