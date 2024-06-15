@@ -287,6 +287,7 @@ int webnet_request_parse_method(struct webnet_request *request, char* buffer, in
     }
 
     ch = strstr(request_buffer, "\r\n");
+    if (ch == NULL) return 0;
     *ch ++ = '\0';
     *ch ++ = '\0';
     request_buffer = ch;
